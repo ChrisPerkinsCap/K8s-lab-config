@@ -1,0 +1,54 @@
+networks:
+  network-1:
+    type: NAT
+    machines: c1-cp1
+  network-2:
+    type: NAT
+    machines: c1-node1
+  network-3:
+    type: NAT
+    machines: c1-node2
+  network-4:
+    type: NAT
+    machines: c1-node3
+  network-5:
+    type: Host-Only
+    name: "VirtualBox Host-Only Ethernet Adapter #2"
+    machines: {c1-cp1,c1-node1,c1-node2,c1-node3}
+    router:
+      ip: 172.16.94.1/24
+      network-mask: 255.255.255.0
+      DHCP-Server:
+        ip: 172.16.94.2
+        network-mask: 255.255.255.0
+        lower-address-bound: 172.16.94.3
+        upper-address-bound: 172.16.94.254
+    port-forwarding:
+      c1-cp1:
+        rule:
+          name: SSH
+          protocol: TCP
+          host-ip: 127.0.0.1
+          host-port: 2221
+          vm-port: 22
+      c1-node1:
+        rule:
+          name: SSH
+          protocol: TCP
+          host-ip: 127.0.0.1
+          host-port: 2222
+          vm-port: 22
+      c1-node2:
+        rule:
+          name: SSH
+          protocol: TCP
+          host-ip: 127.0.0.1
+          host-port: 2223
+          vm-port: 22
+      c1-node3:
+        rule:
+          name: SSH
+          protocol: TCP
+          host-ip: 127.0.0.1
+          host-port: 2224
+          vm-port: 22
