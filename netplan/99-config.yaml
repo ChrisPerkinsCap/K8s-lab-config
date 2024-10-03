@@ -1,0 +1,12 @@
+# /etc/netplan/99-config.yaml
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: true
+    enp0s8:
+      dhcp4: true
+    enp0s9:
+      dhcp4: true
